@@ -55,7 +55,7 @@ class ParquetAdapter(Adapter):
       print("Step 3: Write out the Parquet directory")
       
       dataframe_writer = dataframe.write \
-        .option("compression", "none") \
+        .option("compression", "gzip") \
         .mode(options["output_mode"])
 
       # partition by the supplied column. 
