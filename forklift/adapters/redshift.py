@@ -27,6 +27,7 @@ class RedshiftAdapter(Adapter):
         .format("com.databricks.spark.redshift") \
         .option("url", options["jdbc_connection_string"]) \
         .option("query", select_query_as_string) \
+        .option("forward_spark_s3_credentials", "true") \
         .option("tempdir", options["s3_temp_directory"]) \
         .load()
     # If it bombs for any reason, skip it!
@@ -45,6 +46,7 @@ class RedshiftAdapter(Adapter):
         .format("com.databricks.spark.redshift") \
         .option("url", options["jdbc_connection_string"]) \
         .option("dbtable", options["table_name"]) \
+        .option("forward_spark_s3_credentials", "true") \
         .option("tempdir", options["s3_temp_directory"]) \
         .mode(options["output_mode"]) \
         .save()
