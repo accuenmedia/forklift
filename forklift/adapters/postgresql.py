@@ -46,7 +46,7 @@ class PostgreSQLAdapter(Adapter):
       import string
       table_with_forklift_pk_name = "".join([random.choice(string.ascii_lowercase) for n in xrange(32)])
       direct_postgres_cursor.execute("CREATE TABLE __forklift_tmp.{table_with_forklift_pk_name} AS ({query});".format(table_with_forklift_pk_name=table_with_forklift_pk_name, query=select_query_as_string))
-      print("Step 5: Create a Forklift primary key on the new table from the query in PostgreSQL")
+      print("Step 5: Create a Forklift primary key on the new table {table_with_forklift_pk_name} from the query in PostgreSQL".format(table_with_forklift_pk_name=table_with_forklift_pk_name))
       direct_postgres_cursor.execute("ALTER TABLE __forklift_tmp.{table_with_forklift_pk_name} ADD COLUMN __forklift_pk SERIAL PRIMARY KEY;".format(table_with_forklift_pk_name=table_with_forklift_pk_name))
       direct_postgres_cursor.close()
       direct_postgres_connection.close()
